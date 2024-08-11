@@ -84,7 +84,6 @@ public class Camera extends Thread {
         });
     }
 
-
     // Method to open the camera. It sets up the camera and connects it.
     public void openCamera() {
         try {
