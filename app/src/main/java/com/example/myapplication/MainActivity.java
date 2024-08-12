@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton Select_tomato_btn = findViewById(R.id.pepper_btn);
 
-
         Select_tomato_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -44,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
 

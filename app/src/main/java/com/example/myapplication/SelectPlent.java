@@ -13,6 +13,7 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -42,8 +43,8 @@ public class SelectPlent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_plent_view);
 
-        Button btnCapture = findViewById(R.id.serch_camera);
-        Button btnSelectFromGallery = findViewById(R.id.serch_gallery);
+        ImageButton btnCapture = findViewById(R.id.serch_camera);
+        ImageButton btnSelectFromGallery = findViewById(R.id.serch_gallery);
         imageView = findViewById(R.id.photo_view);
 
         btnCapture.setOnClickListener(view -> {
@@ -68,6 +69,7 @@ public class SelectPlent extends AppCompatActivity {
             switch (requestCode) {
                 case REQUEST_IMAGE_CAPTURE:
                     Bundle extras = data.getExtras();
+                    Log.d("!!!!!", ((Bitmap)extras.get("data")).toString());
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     imageView.setImageBitmap(imageBitmap);
                     // 사진을 갤러리에 저장
@@ -90,6 +92,8 @@ public class SelectPlent extends AppCompatActivity {
             }
         }
     }
+
+
 
     private void saveImageToGallery(Bitmap bitmap) {
         OutputStream fos;

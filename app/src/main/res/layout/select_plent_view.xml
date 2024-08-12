@@ -5,19 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|top"
-    android:weightSum="9">
+    android:weightSum="17">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="4">
+        android:layout_weight="6"
+        android:gravity="bottom|center">
 
         <TextView
             android:id="@+id/serch_plant"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text=",,"
-            android:textSize="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사진을 업로드 해 주세요"
+            android:textSize="35dp"
             android:textAlignment="center"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -26,18 +27,21 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="7"
         android:orientation="horizontal"
         android:gravity="center|top">
 
-        <Button
+        <ImageButton
+            android:background="@drawable/button_round"
+            android:src="@drawable/camera"
+            android:scaleType="centerInside"
             android:id="@+id/serch_camera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_margin="15dp"
             android:text="카메라"/>
 
-        <Button
+        <ImageButton
             android:id="@+id/serch_gallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,13 +53,28 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2">
-
-        <ImageView
-            android:id="@+id/photo_view"
-            android:layout_weight="1"
+        android:layout_weight="4"
+        android:gravity="bottom|center">
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/photo_view"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_margin="20dp"
+                android:text="전송"/>
+
+        </FrameLayout>
+
+
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
