@@ -11,8 +11,8 @@
         android:layout_height="match_parent"
         android:layout_weight="4"
         android:gravity="center"
-        android:text="검색 작물 선택"
-        android:textSize="50dp"/>
+        android:text="작물 선택"
+        android:textSize="50dp" />
 
     <LinearLayout
         android:layout_weight="1"
@@ -25,47 +25,173 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center|top"
-            >
+            android:weightSum="2"
+            android:orientation="vertical"
+            android:gravity="center|top">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal"
-                android:gravity="center">
+                android:gravity="center"
+                android:weightSum="3">
 
-                <Button
-                    android:id="@+id/tomato"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="토마토"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/textview_underline"
+                        android:textAlignment="center"
+                        android:text="고추"/>
+
+                    <ImageButton
+                        android:id="@+id/pepper_btn"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/pepper"
+                        android:background="@drawable/button_round"
+                        android:scaleType="centerInside"
+                        android:padding="15dp"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/textview_underline"
+                        android:textAlignment="center"
+                        android:text="파"/>
+
+
+                    <ImageButton
+                        android:id="@+id/green_onion_btn"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/green_onion"
+                        android:background="@drawable/button_round"
+                        android:scaleType="centerInside"
+                        android:padding="17dp"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 
-                <Button
-                    android:id="@+id/onion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="양파"/>
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="left|top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/textview_underline"
+                        android:textAlignment="center"
+                        android:text="양배추"/>
 
 
+                    <ImageButton
+                        android:id="@+id/lettuce_btn"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/cabbage"
+                        android:background="@drawable/button_round"
+                        android:scaleType="centerInside"
+                        android:padding="10dp"/>
 
-                <Button
-                    android:id="@+id/lettuce"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:text="양상추"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center|top"
+                android:weightSum="2">
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="right|top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/textview_underline"
+                        android:textAlignment="center"
+                        android:text="양배추"/>
+
+
+                    <ImageButton
+                        android:id="@+id/tomato_btn"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/tomato"
+                        android:background="@drawable/button_round"
+                        android:scaleType="centerInside"
+                        android:padding="10dp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center|top"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="85dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/textview_underline"
+                        android:textAlignment="center"
+                        android:text="양배추"/>
+
+
+                    <ImageButton
+                        android:id="@+id/kimchi_lettuce_btn"
+                        android:layout_width="85dp"
+                        android:layout_height="85dp"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/button_round"
+                        android:src="@drawable/kimchi_cabbage"
+                        android:scaleType="centerInside"
+                        android:padding="10dp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
         </LinearLayout>
-
-
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 
@@ -20,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "AndroidCameraExample";
     private static final int REQUEST_CAMERA_PERMISSION = 1; // Request code for camera permission.
 
-    private Camera mCamera; // Instance of the Camera class to handle camera operations.
 
 
     @Override
@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
             requestNecessaryPermissions();
         }
 
-        Button Select_tomato_btn = findViewById(R.id.tomato);
+        ImageButton Select_tomato_btn = findViewById(R.id.pepper_btn);
+
 
         Select_tomato_btn.setOnClickListener(new View.OnClickListener() {
             @Override
