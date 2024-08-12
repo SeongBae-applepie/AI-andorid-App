@@ -14,7 +14,7 @@
         android:gravity="bottom|center">
 
         <TextView
-            android:id="@+id/serch_plant"
+            android:id="@+id/serch_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사진을 업로드 해 주세요"
@@ -32,21 +32,26 @@
         android:gravity="center|top">
 
         <ImageButton
-            android:background="@drawable/button_round"
-            android:src="@drawable/camera"
-            android:scaleType="centerInside"
             android:id="@+id/serch_camera"
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_margin="15dp"
+            android:padding="5dp"
+            android:background="@drawable/button_round"
+            android:src="@drawable/camera"
+            android:scaleType="centerInside"
             android:text="카메라"/>
 
         <ImageButton
             android:id="@+id/serch_gallery"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:src="@drawable/gallery"
+            android:padding="5dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_margin="15dp"
-            android:text="갤러리"/>
+            android:background="@drawable/button_round"
+            android:scaleType="centerInside"
+            android:text="카메라"/>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -60,12 +65,18 @@
             android:layout_height="match_parent">
 
             <ImageView
+                android:background="@drawable/button_round"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="20dp"
                 android:id="@+id/photo_view"
                 android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
             <Button
+                android:background="@drawable/button_round2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|bottom"

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
-
+                intent.putExtra("name","고추");
                 startActivity(intent);
             }
         });
