@@ -38,6 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SelectPlent"/>
+        <activity android:name=".ResultPage"/>
     </application>
 
 

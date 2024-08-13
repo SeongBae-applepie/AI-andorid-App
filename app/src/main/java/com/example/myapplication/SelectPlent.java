@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static java.sql.Types.NULL;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,12 +9,14 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +31,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -40,17 +45,18 @@ public class SelectPlent extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 1;
     private static final int REQUEST_IMAGE_PICK = 2;
     private ImageView imageView;
-    private Uri cameraImageUri; // 카메라로 촬영한 이미지의 URI
+    private Uri cameraImageUri, check_uri; // 카메라로 촬영한 이미지의 URI
     private ImageButton btnCapture ,btnSelectFromGallery;
+
     private Button btnStarAI;
     private TextView nameTextview;
 
-    private ProgressBar progressBar;
-
     private LinearLayout select_view;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private ArrayList result_intent;
 
+
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,27 +64,37 @@ public class SelectPlent extends AppCompatActivity {
         setContentView(R.layout.select_plent_view);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
 
         nameTextview = findViewById(R.id.serch_textview);
         imageView = findViewById(R.id.photo_view);
 
+
         nameTextview.setText(name+" 사진을 업로드 해 주세요");
         btnCapture = findViewById(R.id.serch_camera);
         btnSelectFromGallery = findViewById(R.id.serch_gallery);
-        progressBar = findViewById(R.id.progressBar);
+
         btnStarAI = findViewById(R.id.start_ai_btn);
         select_view = findViewById(R.id.select_view);
 
-        progressBar = new ProgressBar(this);
-        progressBar.setVisibility(View.GONE);
+        check_uri = null;
+
+        result_intent = new ArrayList();
 
 
         btnStarAI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                select_view.setVisibility(View.GONE);
-                loadData();
+                if (check_uri != null){
+                    Intent intent = new Intent(getApplicationContext(), ResultPage.class);
+                    result_intent.add(name);
+                    result_intent.add(check_uri);
+                    intent.putExtra("name",result_intent);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(view.getContext(), "사진을 넣어주세요", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -115,6 +131,7 @@ public class SelectPlent extends AppCompatActivity {
                 case REQUEST_IMAGE_CAPTURE:
                     if (cameraImageUri != null) {
                         // 카메라로 촬영한 이미지 URI를 사용하여 로드 및 표시
+                        check_uri = cameraImageUri;
                         loadAndDisplayImage(cameraImageUri);
                     }
                     break;
@@ -123,6 +140,7 @@ public class SelectPlent extends AppCompatActivity {
                     if (data != null) {
                         Uri selectedImage = data.getData();
                         if (selectedImage != null) {
+                            check_uri = selectedImage;
                             // 갤러리에서 선택한 이미지 URI를 사용하여 로드 및 표시
                             loadAndDisplayImage(selectedImage);
                         }
@@ -145,6 +163,8 @@ public class SelectPlent extends AppCompatActivity {
     }
 
     private void loadAndDisplayImage(Uri imageUri) {
+
+
         // Glide를 사용하여 이미지 로드 및 크기 조절
         Glide.with(this)
                 .load(imageUri)
@@ -154,38 +174,4 @@ public class SelectPlent extends AppCompatActivity {
                         .fitCenter()) // 가운데를 기준으로 잘라내기
                 .into(imageView);
     }
-    private void loadData() {
-        // ProgressBar를 보이도록 설정
-        progressBar.setVisibility(View.VISIBLE);
-
-        // 비동기 작업 수행
-        disposables.add(
-                Observable.fromCallable(this::fetchData)
-                        .subscribeOn(Schedulers.io()) // 백그라운드 스레드에서 작업 실행
-                        .observeOn(AndroidSchedulers.mainThread()) // UI 업데이트를 메인 스레드에서 수행
-                        .subscribe(
-                                result -> {
-                                    // 작업 성공시 UI 업데이트
-                                    select_view.setVisibility(View.VISIBLE);
-                                    progressBar.setVisibility(View.GONE); // ProgressBar 숨김
-                                },
-                                throwable -> {
-                                    // 오류 발생 시 UI 업데이트
-                                    progressBar.setVisibility(View.GONE); // ProgressBar 숨김
-                                }
-                        )
-        );
-    }
-
-    private String fetchData() throws InterruptedException {
-        // 네트워크 요청이나 긴 작업 시뮬레이션
-        Thread.sleep(3000); // 3초 지연
-        return "Data loaded successfully";
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        disposables.clear(); // 모든 구독 해제
-    }
-}
+ }

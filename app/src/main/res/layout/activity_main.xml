@@ -147,7 +147,7 @@
                         android:layout_marginRight="10dp"
                         android:background="@drawable/textview_underline"
                         android:textAlignment="center"
-                        android:text="양배추"/>
+                        android:text="토마토"/>
 
 
                     <ImageButton
@@ -176,7 +176,7 @@
                         android:layout_marginLeft="10dp"
                         android:background="@drawable/textview_underline"
                         android:textAlignment="center"
-                        android:text="양배추"/>
+                        android:text="배추"/>
 
 
                     <ImageButton

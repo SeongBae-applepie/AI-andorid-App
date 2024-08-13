@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "AndroidCameraExample";
     private static final int REQUEST_CAMERA_PERMISSION = 1; // Request code for camera permission.
 
-
+    private ImageButton Select_pepper_btn, Select_green_onion_btn, Select_lettuce_btn ,Select_tomato_btn ,Select_kimchi_lettuce_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,53 @@ public class MainActivity extends AppCompatActivity {
             requestNecessaryPermissions();
         }
 
-        ImageButton Select_tomato_btn = findViewById(R.id.pepper_btn);
+        Select_pepper_btn = findViewById(R.id.pepper_btn);
+        Select_green_onion_btn = findViewById(R.id.green_onion_btn);
+        Select_tomato_btn = findViewById(R.id.tomato_btn);
+        Select_kimchi_lettuce_btn = findViewById(R.id.kimchi_lettuce_btn);
+        Select_lettuce_btn = findViewById(R.id.lettuce_btn);
+
+        Select_pepper_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
+                intent.putExtra("name","고추");
+                startActivity(intent);
+            }
+        });
+
+        Select_kimchi_lettuce_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
+                intent.putExtra("name","배추");
+                startActivity(intent);
+            }
+        });
+
+        Select_lettuce_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
+                intent.putExtra("name","양배추");
+                startActivity(intent);
+            }
+        });
 
         Select_tomato_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
-                intent.putExtra("name","고추");
+                intent.putExtra("name","토마토");
+                startActivity(intent);
+            }
+        });
+
+        Select_green_onion_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), SelectPlent.class);
+                intent.putExtra("name","파");
                 startActivity(intent);
             }
         });
