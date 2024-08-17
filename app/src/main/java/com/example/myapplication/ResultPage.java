@@ -1,13 +1,18 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +20,17 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
+
+import org.pytorch.IValue;
+import org.pytorch.Module;
+import org.pytorch.Tensor;
+import org.pytorch.torchvision.TensorImageUtils;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.ArrayList;
 
@@ -27,10 +43,11 @@ public class ResultPage extends AppCompatActivity {
 
     private ImageView imageview_1,imageview_2,imageview_3;
     private ImageView imageView;
+    private TextView result_textview;
     private ProgressBar progressBar;
     private String name;
     private CompositeDisposable disposables = new CompositeDisposable();
-
+    private Module module;
     private Uri cameraImageUri;
 
     private LinearLayout result_view ,result_logding_view;
@@ -49,6 +66,7 @@ public class ResultPage extends AppCompatActivity {
         imageview_2 = findViewById(R.id.imageview_2);
         imageview_3 = findViewById(R.id.imageview_3);
 
+        result_textview = findViewById(R.id.result_textview);
         progressBar = findViewById(R.id.progressBar);
 
         result_view.setVisibility(View.GONE);
@@ -102,6 +120,7 @@ public class ResultPage extends AppCompatActivity {
         }
 
         loadData();
+
     }
 
     private void loadData() {
@@ -113,6 +132,8 @@ public class ResultPage extends AppCompatActivity {
                         .observeOn(AndroidSchedulers.mainThread()) // UI 업데이트를 메인 스레드에서 수행
                         .subscribe(
                                 result -> {
+
+
                                     result_view.setVisibility(View.VISIBLE);
                                     result_logding_view.setVisibility(View.GONE);
                                     // ProgressBar 숨김
@@ -137,6 +158,10 @@ public class ResultPage extends AppCompatActivity {
 
     private String fetchData() throws InterruptedException {
         // 네트워크 요청이나 긴 작업 시뮬레이션
+
+
+
+
         Thread.sleep(3000); // 3초 지연
 
         return "Data loaded successfully";
@@ -161,4 +186,24 @@ public class ResultPage extends AppCompatActivity {
                 .into(imageView);
     }
 
+
+    // assets 폴더에서 파일 경로 얻기
+    private String assetFilePath(Context context, String assetName) throws IOException {
+        File file = new File(context.getFilesDir(), assetName);
+        if (file.exists() && file.length() > 0) {
+            return file.getAbsolutePath();
+        }
+
+        try (InputStream is = context.getAssets().open(assetName)) {
+            try (OutputStream os = new FileOutputStream(file)) {
+                byte[] buffer = new byte[4 * 1024];
+                int read;
+                while ((read = is.read(buffer)) != -1) {
+                    os.write(buffer, 0, read);
+                }
+                os.flush();
+            }
+            return file.getAbsolutePath();
+        }
+    }
 }

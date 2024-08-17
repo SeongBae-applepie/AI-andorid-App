@@ -70,7 +70,7 @@ public class SelectPlent extends AppCompatActivity {
         imageView = findViewById(R.id.photo_view);
 
 
-        nameTextview.setText(name+" 사진을 업로드 해 주세요");
+        nameTextview.setText(name+" 사진을 \n업로드 해 주세요");
         btnCapture = findViewById(R.id.serch_camera);
         btnSelectFromGallery = findViewById(R.id.serch_gallery);
 
